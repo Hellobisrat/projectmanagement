@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react'
 import {baseControlClasses, DEFAULT_TASK, priorityStyles} from '../assets/dummy'
 import { AlignCenter, Calendar, CheckCircle, FileInputIcon, Flag, PlusCircle, Save, X } from 'lucide-react'
 import axios from 'axios';
-const API_BASE='http://localhost:8000/api/tasks'
+const API_BASE='http://127.0.0.1:8000/api/tasks'
 
 const TaskModal = ({isOpen,onClose,taskToEdit,onSave,onLogout}) => {
   const [taskData,setTaskData] = useState(DEFAULT_TASK)

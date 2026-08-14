@@ -2,7 +2,7 @@ import { User, UserPlus} from 'lucide-react'
 import React,{useState} from 'react'
 import axios from 'axios'
 import { BUTTONCLASSES, data, Inputwrapper, MESSAGE_ERROR, MESSAGE_SUCCESS } from '../assets/dummy'
-const API_URL='http://localhost:8000'
+const API_URL='http://127.0.0.1:8000'
 
 const INITIAL_FORM = {
   name: "",

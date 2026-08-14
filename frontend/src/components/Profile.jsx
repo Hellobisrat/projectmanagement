@@ -5,7 +5,7 @@ import { BACK_BUTTON, DANGER_BTN, FULL_BUTTON, INPUT_WRAPPER, Inputwrapper, SECT
 import { User, Mail,Lock } from 'lucide-react';
 import { ChevronLeft, Save,Shield,UserCircle,LogOut } from 'lucide-react'
 import axios from 'axios'
-const API_URL= 'http://localhost:8000'
+const API_URL= 'http://127.0.0.1:8000'
 
 const Profile = ({setCurrentUser, onLogout}) => {
   const navigate = useNavigate()

@@ -29,9 +29,5 @@ jobs:
           docker build -t bisrat1/projectmanagement-frontend:latest ./frontend
           docker push bisrat1/projectmanagement-frontend:latest
 
-      - name: Setup kubectl
-        uses: azure/setup-kubectl@v3
-
-      - name: Apply Kubernetes manifests
-        run: |
-          kubectl apply -f k8s/
+      - name: Deployment notice
+        run: echo "Images pushed. Deploy manually to Minikube using kubectl apply -f k8s/"

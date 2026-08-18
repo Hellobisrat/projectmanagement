@@ -83,7 +83,7 @@ const PendingPage = () => {
                 </div>
                 <h3 className='text-lg font-semibold text-gray-800 mb-2'>
                   All caught up!
-                </h3>
+                </h3> 
                 <p className='text-sm text-gray-500 mb-4'>
                   No pending tasks
                 </p>

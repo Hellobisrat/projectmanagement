@@ -88,7 +88,7 @@ const CompletePage = () => {
         {sortedCompletedTasks.length === 0 ? (
           <div className={CT_CLASSES.emptyState}>
             <div className={CT_CLASSES.emptyIconWrapper}>
-              <CheckCircle2 className='w-6 h-6 md:w-8 ,d:h-8 text-purple-500'/>
+              <CheckCircle2 className='w-6 h-6 md:w-8 md:h-8 text-purple-500'/>
              
              </div>
              <h3 className={CT_CLASSES.emptyTitle}>

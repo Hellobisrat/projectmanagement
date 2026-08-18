@@ -47,7 +47,7 @@ const Navbar = ({user,onLogout}) => {
           <Settings className='w-5 h-5'/>
 
          </button>
-         {/*user dropdown*/}
+         {/*user droppdudown*/}
          <div ref={menuref} className='relative'>
           <button onClick={handleMenuToggle} className='flex items-center gap-2 px-3
           py-2 rounded-full cursor-pointer hover:bg-purple-50 transition-colors

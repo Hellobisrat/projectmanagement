@@ -4,7 +4,7 @@ import { Calendar, CheckCircle2, Clock, MoreVertical } from 'lucide-react'
 import { isToday,format } from 'date-fns';
 import TaskModal from './TaskModal';
 import axios from 'axios'
-const API_BASE='http://localhost:8000/api/tasks'
+const API_BASE='http://127.0.0.1:8000/api/tasks'
 
 const TaskItem = ({task, onRefresh, onLogout, showCompleteCheckbox=true}) => {
 

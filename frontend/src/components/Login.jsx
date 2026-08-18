@@ -4,7 +4,7 @@ import { LogIn as LogInIcon, Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { BUTTONCLASSES,  Inputwrapper, MESSAGE_ERROR, MESSAGE_SUCCESS } from '../assets/dummy'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-const API_URL='http://localhost:8000'
+const API_URL='http://127.0.0.1:8000'
 
 const INITIAL_FORM = {
   email: "",
@@ -15,7 +15,7 @@ const INITIAL_FORM = {
 
 const Login = ({onSubmit,onSwitchMode}) => {
   const [showPassword,setShowPassword]=useState(false)
-const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData,setFormData]=useState(INITIAL_FORM)
   const navigate =useNavigate();
   const [rememberMe,setRememberMe]=useState(false);

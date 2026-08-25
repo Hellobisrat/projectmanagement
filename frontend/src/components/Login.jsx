@@ -3,8 +3,8 @@ import { toast, ToastContainer} from 'react-toastify'
 import { LogIn as LogInIcon, Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { BUTTONCLASSES,  Inputwrapper, MESSAGE_ERROR, MESSAGE_SUCCESS } from '../assets/dummy'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios'
-const API_URL='http://127.0.0.1:8000'
+import api from '../api';
+
 
 const INITIAL_FORM = {
   email: "",
@@ -43,7 +43,7 @@ const Login = ({onSubmit,onSwitchMode}) => {
     if(token){
       (async ()=>{
         try {
-          const {data} = await axios.get(`${API_URL}/api/user/me`,{
+          const {data} = await api.get(`/user/me`,{
             headers:{Authorization:`Bearer ${token}`}
           })
           if(data.success){
@@ -72,7 +72,7 @@ const Login = ({onSubmit,onSwitchMode}) => {
     }
       setLoading(true)
     try {
-      const {data} = await axios.post(`${API_URL}/api/user/login`,formData)
+      const {data} = await api.post(`/user/login`,formData)
       if(!data.token) throw new Error(data.message || "Login failed")
         localStorage.setItem('token',data.token)
         localStorage.setItem('userId',data.user.id)

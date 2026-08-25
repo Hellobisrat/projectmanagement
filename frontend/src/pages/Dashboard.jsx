@@ -4,8 +4,9 @@ import { HomeIcon,Plus,Filter, Calendar, CalendarIcon } from 'lucide-react'
 import {  useOutletContext } from 'react-router-dom'
 import TaskItem from '../components/TaskItem'
 import TaskModal from '../components/TaskModal'
-import axios from 'axios'
-const API_BASE ='http://127.0.0.1:8000/api/tasks'
+
+import api from '../api'
+
 const Dashboard = () => {
   const{tasks,refreshTasks}=useOutletContext()
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +25,7 @@ const Dashboard = () => {
   const handleTaskSave = useCallback(async(taskData)=>{
     try {
       if(taskData.id)
-        await axios.put(`${API_BASE}/${taskData.id}/gp`,taskData)
+        await api.put(`tasks/${taskData.id}/gp`,taskData)
         refreshTasks()
         setShowModal(false)
         setSelectedTask(null)

@@ -2,9 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: backend
-  namespace: dev
+  namespace: {{ .Values.namespace }}
 spec:
-  replicas: 2
+  replicas: {{ .Values.backend.replicas }}
   selector:
     matchLabels:
       app: backend
@@ -16,14 +16,14 @@ spec:
     spec:
       containers:
         - name: backend
-          image: bisrat1/projectmanagement-backend:latest
+          image: {{ .Values.backend.image }}
           ports:
-            - containerPort: 8000
+            - containerPort: {{ .Values.backend.port }}
           env:
             - name: PORT
-              value: "8000"
+              value: "{{ .Values.backend.port }}"
             - name: MONGO_URI
-              value: "mongodb://mongo:27017/projectdb"
+              value:  "{{ .Values.backend.mongoUri }}"
             - name: JWT_SECRET
               valueFrom:
                 secretKeyRef:
@@ -38,6 +38,6 @@ spec:
   selector:
     app: backend
   ports:
-    - port: 8000
-      targetPort: 8000
+    - port:  {{ .Values.backend.port }}
+      targetPort: {{ .Values.backend.port }}
   type: LoadBalancer

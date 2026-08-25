@@ -4,8 +4,7 @@ import {toast, ToastContainer} from 'react-toastify'
 import { BACK_BUTTON, DANGER_BTN, FULL_BUTTON, INPUT_WRAPPER, Inputwrapper, SECTION_WRAPPER ,personalFields, securityFields} from '../assets/dummy'
 import { User, Mail,Lock } from 'lucide-react';
 import { ChevronLeft, Save,Shield,UserCircle,LogOut } from 'lucide-react'
-import axios from 'axios'
-const API_URL= 'http://127.0.0.1:8000'
+import api from '../api';
 
 const Profile = ({setCurrentUser, onLogout}) => {
   const navigate = useNavigate()
@@ -15,7 +14,7 @@ const Profile = ({setCurrentUser, onLogout}) => {
   useEffect(()=>{
     const token = localStorage.getItem('token')
     if(!token) return
-    axios.get(`${API_URL}/api/user/me`,{headers: {Authorization: `Bearer ${token}`}})
+    api.get('/user/me')
     .then(({data})=>{
       if(data.success)
         setProfile({name:data.user.name, email:data.user.email})
@@ -28,8 +27,8 @@ const Profile = ({setCurrentUser, onLogout}) => {
     e.preventDefault()
     try {
       const token = localStorage.getItem('token')
-      const {data} = await axios.put(
-        `${API_URL}/api/user/profile`,
+      const {data} = await api.put(
+        '/user/profile',
       {name:profile.name, email:profile.email},
       {headers:{Authorization:`Bearer ${token}`}})
     if(data.success){
@@ -51,8 +50,8 @@ const Profile = ({setCurrentUser, onLogout}) => {
     }
     try {
       const token = localStorage.getItem('token')
-      const {data} = await axios.put(
-        `${API_URL}/api/user/password`,
+      const {data} = await api.put(
+        '/user/password',
         {currentPassword:passwords.current, newPassword: passwords.new},
         {headers:{Authorization:`Bearer ${token}`}}
       )

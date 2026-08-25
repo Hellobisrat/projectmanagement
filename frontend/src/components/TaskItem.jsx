@@ -3,8 +3,8 @@ import { getPriorityColor, MENU_OPTIONS, TI_CLASSES } from '../assets/dummy'
 import { Calendar, CheckCircle2, Clock, MoreVertical } from 'lucide-react'
 import { isToday,format } from 'date-fns';
 import TaskModal from './TaskModal';
-import axios from 'axios'
-const API_BASE='http://127.0.0.1:8000/api/tasks'
+import api from '../api';
+
 
 const TaskItem = ({task, onRefresh, onLogout, showCompleteCheckbox=true}) => {
 
@@ -35,7 +35,7 @@ const TaskItem = ({task, onRefresh, onLogout, showCompleteCheckbox=true}) => {
         const handleComplete = async ()=>{
           const newStatus = isCompleted ? "No" :"Yes"
           try {
-            await axios.put(`${API_BASE}/${task.id}/gp`,{completed: newStatus},
+            await api.put(`/${task.id}/gp`,{completed: newStatus},
                   { headers:getAuthHeaders()})
                   setIsCompleted(!isCompleted)
                   onRefresh?.()
@@ -52,7 +52,7 @@ const TaskItem = ({task, onRefresh, onLogout, showCompleteCheckbox=true}) => {
 
         const handleDelete = async ()=>{
           try {
-            await axios.delete(`${API_BASE}/${task._id}/gp`,{headers:getAuthHeaders()})
+            await api.delete(`/${task._id}/gp`,{headers:getAuthHeaders()})
             onRefresh?.()
           } catch (err) {
             if(err.response?.status === 401) onLogout?.()
@@ -64,7 +64,7 @@ const TaskItem = ({task, onRefresh, onLogout, showCompleteCheckbox=true}) => {
           try {
             const payload = (({title,description,priority,dueDate,completed})=>
             ({title,description,priority,dueDate,completed}))(updatedTask)
-            await axios.put(`${API_BASE}/${task._id}/gp`,payload,
+            await api.put(`/${task._id}/gp`,payload,
               {headers: getAuthHeaders()}
             )
             setShowEditModal(false)

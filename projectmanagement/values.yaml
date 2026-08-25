@@ -1,0 +1,33 @@
+namespace: dev
+
+backend:
+  image: bisrat1/projectmanagement-backend:latest
+  replicas: 2
+  port: 8000
+  mongoUri: "mongodb://mongo:27017/projectdb"
+
+frontend:
+  image: bisrat1/projectmanagement-frontend:latest
+  replicas: 2
+  port: 80
+
+mongo:
+  image: mongo:6
+  port: 27017
+  pvcSize: 2Gi
+
+secrets:
+  mongoUri: "your-mongo-uri"
+  jwtSecret: "your-jwt-secret"
+
+ingress:
+  host: localhost
+  apiPath: /api
+  frontendPath: /
+
+mongo:
+  image: mongo:6
+  port: 27017
+  pvcSize: 2Gi
+  replicas: 1
+

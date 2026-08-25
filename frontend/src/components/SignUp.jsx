@@ -1,8 +1,8 @@
 import { User, UserPlus} from 'lucide-react'
 import React,{useState} from 'react'
-import axios from 'axios'
 import { BUTTONCLASSES, data, Inputwrapper, MESSAGE_ERROR, MESSAGE_SUCCESS } from '../assets/dummy'
-const API_URL='http://127.0.0.1:8000'
+import api from '../api'
+
 
 const INITIAL_FORM = {
   name: "",
@@ -15,7 +15,7 @@ const SignUP = ({onSwitchMode}) => {
     setLoading(true)
     setMessage({text:"",type:""})
     try{
-      const {data} = await axios.post(`${API_URL}/api/user/register`,formData)
+      const {data} = await api.post('/user/register',formData)
       setMessage({text:"Registration successful! you can now log in.",type:"success"})
       setFormData(INITIAL_FORM)
       const { token, user } = data;

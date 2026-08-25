@@ -2,12 +2,10 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: projectmanagement-ingress
-  namespace: dev
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  namespace: {{ .Values.namespace }}
 spec:
   rules:
-    - host:  localhost
+    - host: {{ .Values.ingress.host }}
       http:
         paths:
           - path: /api
@@ -16,7 +14,7 @@ spec:
               service:
                 name: backend
                 port:
-                  number: 8000
+                  number: {{ .Values.backend.port }}
 
           - path: /
             pathType: Prefix
@@ -24,4 +22,4 @@ spec:
               service:
                 name: frontend
                 port:
-                  number: 80
+                  number: {{ .Values.frontend.port }}

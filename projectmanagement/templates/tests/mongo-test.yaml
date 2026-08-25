@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo-test
+  annotations:
+    "helm.sh/hook": test
+spec:
+  restartPolicy: Never
+  containers:
+    - name: mongo
+      image: mongo:6
+      command: ["mongosh"]
+      args:
+        - "mongodb://mongo.dev.svc.cluster.local:27017"
+        - "--eval"
+        - "db.stats()"
+
